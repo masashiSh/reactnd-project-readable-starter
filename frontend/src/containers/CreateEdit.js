@@ -49,7 +49,7 @@ class CreateEditPost extends Component {
   }
 
   render () {
-    const { categories, action, post } = this.props
+    const { categories, post } = this.props
     return (
       <div>
       <Link
@@ -110,7 +110,7 @@ class CreateEditPost extends Component {
 
 
 const mapStateToProps = (state, props) => {
-  const { readableReducer, router } = state
+  const { readableReducer } = state
   return {
     categories: props.categories,
     post: readableReducer.selectedPost

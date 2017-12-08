@@ -14,7 +14,7 @@ class Default extends Component {
   }
   
   render () {
-    const { categories, allPosts, selectedCategory, actions, sortOrder } = this.props
+    const { categories, allPosts, actions, sortOrder } = this.props
     
     return (
       <div>
@@ -124,7 +124,7 @@ class Default extends Component {
 
 
 const mapStateToProps = (state, props) => {
-  const { readableReducer, router } = state
+  const { readableReducer } = state
 
   const tmpPosts = readableReducer.allPosts.slice()
   const sortOrder = readableReducer.sortOrder.slice()

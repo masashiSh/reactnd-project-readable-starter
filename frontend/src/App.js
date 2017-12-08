@@ -19,8 +19,7 @@ class App extends Component {
   }
 
   render () {
-    const { categories, categoriesPosts, allPosts, selectedCategory,
-      selectedPost, selectedComment } = this.props
+    const { categories, selectedPost, selectedComment } = this.props
     return (
       <div>
         <Switch >
@@ -35,7 +34,7 @@ class App extends Component {
           />
           {
             (Object.keys(selectedComment).length > 0) &&
-            <Route 
+            <Route
               path={`/create/comment/${selectedComment.id}`} component={CreateEditComment}
               comment={selectedComment}
             />

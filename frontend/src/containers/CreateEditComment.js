@@ -45,7 +45,7 @@ class CreateEditComment extends Component {
   }
 
   render () {
-    const {  action, comment, selectedPost } = this.props
+    const { comment, selectedPost } = this.props
     return (
       <div>
       <Link
@@ -56,7 +56,7 @@ class CreateEditComment extends Component {
         </Link>
         <h4>
           {
-            Object.keys(comment). length > 0
+            Object.keys(comment).length > 0
               ? 'Edit a Comment'
               : 'Create a new Comment'
           }
@@ -80,7 +80,7 @@ class CreateEditComment extends Component {
               onClick={() => window.scrollTo(0, 0)}
             >
             {
-              Object.keys(comment). length > 0
+              Object.keys(comment).length > 0
                 ? <button onClick={() => this.handlePutClicked()}>Put</button>
                 : <button onClick={() => this.handlePostClicked()}>Post</button>
             }
@@ -98,7 +98,7 @@ class CreateEditComment extends Component {
 
 
 const mapStateToProps = (state, props) => {
-  const { readableReducer, router } = state
+  const { readableReducer } = state
   return {
     comment: readableReducer.selectedComment,      
     selectedPost: readableReducer.selectedPost      
