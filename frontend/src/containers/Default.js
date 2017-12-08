@@ -72,6 +72,7 @@ class Default extends Component {
                 <div>
                   <ul>
                     <li>
+                      {'title: '}
                       <Link
                         key={p.id}
                         to={`/${p.category}/${p.id}`}
@@ -82,14 +83,14 @@ class Default extends Component {
                           value={p.id}
                           onClick={() => actions.selectPost(p.id)}
                         >
-                          {p.title}
+                          {`${p.title}`}
                         </button>
                       </Link>
                     </li>
                     <li>{`author: ${p.author}`}</li>
                     <li>{`number of comments: ${p.commentCount}`}</li>
-                    <li>{`current score: ${p.voteScore}`}</li>
                     <li>
+                      {`current score: ${p.voteScore}`}
                       <button onClick={() => actions.votePost(p.id, 'upVote')}>Up</button>
                       <button onClick={() => actions.votePost(p.id, 'downVote')}>Down</button>
                     </li>
