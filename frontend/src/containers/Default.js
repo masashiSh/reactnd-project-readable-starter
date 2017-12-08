@@ -13,12 +13,6 @@ class Default extends Component {
     this.props.actions.filterCategory('')
   }
   
-  // componentWillReceiveProps () {
-  //   this.props.actions.getCategories()
-  //   this.props.actions.getAllPosts()
-  // }
-  
-  
   render () {
     const { categories, allPosts, selectedCategory, actions, sortOrder } = this.props
     

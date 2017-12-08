@@ -74,10 +74,6 @@ export const createNewComment = () => ({
   type: types.CREATE_NEW_COMMENT
 })
 
-// export const selectPost = (postTitle) => ({
-//   type: types.SELECT_POST,
-//   postTitle
-// })
 export const selectPostEdit = (postId) => ({
   type: types.SELECT_POST_EDIT,
   postId: postId
@@ -94,7 +90,6 @@ export const selectPost = (postId) => dispatch => (
     .then(json => dispatch({
       type: types.SELECT_POST,
       postId: postId,
-      // selectedCategory: category,
       data: json
     }))
   ).catch(() => console.log('err'))
@@ -112,34 +107,11 @@ export const selectComment = (commentId) => dispatch => (
     .then(json => dispatch({
       type: types.SELECT_COMMENT,
       commentId: commentId,
-      // selectedCategory: category,
       data: json
     }))
   ).catch(() => console.log('err'))
 )
 
-// export const postContent = (post) => dispatch => (
-//   fetch(
-//     // `${api}/posts`, {
-//     //   headers: {
-//     //     'Authorization': 'whatever-you-want'
-//     //     // post: post
-//     //   },
-//     `${api}/posts`, {
-//       headers: {
-//         'Authorization': 'whatever-you-want'
-//         // id: post.id
-//       },
-//       body: post,
-//       method: 'POST',
-//     }
-//   ).then(res => res.json()
-//     .then(json => dispatch({
-//       type: types.POST_CONTENT,
-//       addedPost: json
-//     }))
-//   ).catch(() => console.log('err'))
-// )
 export const postContent = (post) => (dispatch) => (
   axios.create({
     baseURL: `${api}`,
@@ -227,14 +199,4 @@ export const voteComment = (id, upOrDown) => (dispatch) => (
     votedComment: res.data
   }))
 )
-// export const deleteComment = (id) => (dispatch) => (
-//   axios.create({
-//     baseURL: `${api}`,
-//     headers: { Authorization: 'whatever-you-want' }
-//   }).delete(`/comments/${id}`
-//   ).then(res => dispatch({
-//     type: types.DELETE_POST,
-//     deletedcomment: res.data
-//   }))
-// )
 

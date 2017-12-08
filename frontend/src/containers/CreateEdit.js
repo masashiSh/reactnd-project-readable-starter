@@ -15,7 +15,6 @@ class CreateEditPost extends Component {
     category: '',
   }
   componentDidMount() {
-    // this.props.actions.getCategories()
 
     (this.props.categories[0]) && this.setState({category: this.props.categories[0].name})
     
@@ -113,9 +112,8 @@ class CreateEditPost extends Component {
 const mapStateToProps = (state, props) => {
   const { readableReducer, router } = state
   return {
-    // categories: readableReducer.categories,
     categories: props.categories,
-    post: readableReducer.selectedPost      // propsにして、
+    post: readableReducer.selectedPost
   }
 }
 

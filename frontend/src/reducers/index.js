@@ -7,7 +7,6 @@ const initialState = {
   allPosts: [],
   categoriesPosts: [],
   selectedPost: '',
-  // sortOrder: '',
   sortOrder: sort.DEFAULT,
   selectedPostComments: [],
   selectedComment: {},
@@ -44,7 +43,6 @@ function readableReducer (state = initialState, action) {
     case types.GET_CATEGORIES_POSTS:
       return Object.assign({},
         state,
-        // { selectedCategory: action.selectedCategory },
         { categoriesPosts: action.data }
       )
     case types.SELECT_POST:
@@ -60,7 +58,6 @@ function readableReducer (state = initialState, action) {
         state,
         {
           selectedPost: state.allPosts.filter(p => p.id === action.postId)[0]
-          // selectedPostComments: action.data
         }
       )
     case types.SELECT_COMMENT:
@@ -68,7 +65,6 @@ function readableReducer (state = initialState, action) {
         state,
         {
           selectedComment: state.selectedPostComments.filter(c => c.id === action.commentId)[0]
-          // selectedComment: action.data
         }
       )
     case types.CREATE_NEW_COMMENT:
@@ -76,7 +72,6 @@ function readableReducer (state = initialState, action) {
         state,
         {
           selectedComment: {}
-          // selectedComment: action.data
         }
       )
     case types.SORT_POSTS:
@@ -88,7 +83,6 @@ function readableReducer (state = initialState, action) {
       return Object.assign({},
         state,
         {
-          // allPosts: Object.assign([], state.allPosts, action.addedPost)
           allPosts: [...state.allPosts, action.addedPost]
         }
       )
@@ -96,10 +90,7 @@ function readableReducer (state = initialState, action) {
       return Object.assign({},
         state,
         {
-          // allPosts: Object.assign({}, state.allPosts, action.addedPost),
           allPosts: state.allPosts.filter(p => p.id !== action.addedPost.id).concat([action.addedPost])
-          
-          // selectedPost: action.addedPost
         }
       )
     case types.DELETE_POST:
@@ -112,7 +103,6 @@ function readableReducer (state = initialState, action) {
         }
       )
     case types.POST_COMMENT:
-      // const nextCommentCount = state.allPosts.filter(p => p === action.parentId).commentCount + 1
       const nextAllPosts = state.allPosts.map(p => {
         if (p.id === action.parentId) {
           return (
@@ -129,7 +119,6 @@ function readableReducer (state = initialState, action) {
         {
           allPosts: nextAllPosts,
           selectedPostComments: state.selectedPostComments.concat(action.addedComment),
-          // selectedComment: action.addedComment
           selectedPost: nextAllPosts.filter(p => p.id === action.addedComment.parentId)[0]
         }
       )
@@ -137,7 +126,6 @@ function readableReducer (state = initialState, action) {
       return Object.assign({},
         state,
         {
-          // allPosts: Object.assign(state.allPosts, action.addedPost)
           selectedPostComments: state.selectedPostComments.map(c => (
             (c.id === action.addedComment.id)
               ? action.addedComment
@@ -161,7 +149,6 @@ function readableReducer (state = initialState, action) {
       return Object.assign({},
         state,
         {
-          // allPosts: Object.assign(state.allPosts, action.addedPost)
           allPosts: nexAllPosts,
           selectedPostComments: state.selectedPostComments.filter(c => (
             (c.id !== action.deletedComment.id)

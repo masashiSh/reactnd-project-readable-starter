@@ -23,7 +23,6 @@ class App extends Component {
       selectedPost, selectedComment } = this.props
     return (
       <div>
-        {/* <Route exact path="/" component={Default} /> */}
         <Switch >
           <Route exact path="/" component={Default} />
           <Route
@@ -34,9 +33,6 @@ class App extends Component {
           <Route
             path="/create/comment/new" component={CreateEditComment}
           />
-          {/* <Route 
-            exact path="/create/comment/new" component={CreateEditComment}
-          /> */}
           {
             (Object.keys(selectedComment).length > 0) &&
             <Route 

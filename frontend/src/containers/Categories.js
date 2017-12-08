@@ -18,7 +18,6 @@ class Categories extends Component {
     const { categories, allPosts, selectedCategory, actions, categoriesPosts, sortOrder } = this.props
     return (
       <div>
-        {/* <button onClick={() => actions.createNewPost()}>Create New Post</button> */}
         <Link
           to="/"
           onClick={() => window.scrollTo(0, 0)}
@@ -128,15 +127,11 @@ class Categories extends Component {
 
 
 const mapStateToProps = (state, props) => {
-  // const { readableReducer, router } = state
   const { readableReducer } = state
   const { selectedCategory } = props
   
-  // const tmpPosts = readableReducer.categoriesPosts.slice()
   const tmpPosts = readableReducer.allPosts.slice()
     .filter(p => (p.category === selectedCategory))
-  // const tmpPosts = readableReducer.categoriesPosts.slice()
-  //   .filter(p => (p.category === selectedCategory))
   const sortOrder = readableReducer.sortOrder.slice()
   let nextPosts
   switch (sortOrder) {
@@ -175,9 +170,7 @@ const mapStateToProps = (state, props) => {
   return {
     categories: readableReducer.categories,
     allPosts: readableReducer.allPosts,
-    // selectedCategory: readableReducer.selectedCategory,
     selectedCategory: selectedCategory,
-    // categoriesPosts: readableReducer.categoriesPosts,
     categoriesPosts: nextPosts,
     sortOrder: readableReducer.sortOrder
   }

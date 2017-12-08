@@ -11,7 +11,6 @@ export const postOrder = 'title,commentCount,voteScore,body,comments'
 class PostDetail extends Component {
   componentDidMount () {
     this.props.actions.getCategories()
-    // this.props.actions.getAllPosts()
   }
 
   render () {
@@ -84,12 +83,6 @@ class PostDetail extends Component {
               Create a new comment
             </button>
           </Link>
-          {/* <Link
-            to="/create/comment/new"
-            onClick={() => window.scrollTo(0, 0)}
-          >
-            Create a new comment
-          </Link> */}
           <ul>
             {
               comments.map((c, i) => (

@@ -23,16 +23,6 @@ class CreateEditComment extends Component {
       })
     }
   }
-  // componentWillReceiveProps() {
-  //   const { comment } = this.props
-  //   if (Object.keys(comment).length > 0) {
-  //     const { body, author } = comment
-  //     this.setState({
-  //       body: body,
-  //       author: author,
-  //     })
-  //   }
-  // }
 
   handlePostClicked () {
     const uuid = require('uuid/v4')()
@@ -110,8 +100,8 @@ class CreateEditComment extends Component {
 const mapStateToProps = (state, props) => {
   const { readableReducer, router } = state
   return {
-    comment: readableReducer.selectedComment,      // propsにして、
-    selectedPost: readableReducer.selectedPost      // propsにして、
+    comment: readableReducer.selectedComment,      
+    selectedPost: readableReducer.selectedPost      
   }
 }
 
