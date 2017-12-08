@@ -1,59 +1,70 @@
 import React, { Component } from 'react'
 import './App.css'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Default from './containers/Default'
 import Categories from './containers/Categories'
 import CreateEdit from './containers/CreateEdit'
+import CreateEditComment from './containers/CreateEditComment'
 import PostDetail from './containers/PostDetail'
+import NotFound from './containers/NotFound'
 
 import * as actions from './actions'
 
 class App extends Component {
+  componentDidMount () {
+    this.props.actions.getCategories()
+  }
+
   render () {
     const { categories, categoriesPosts, allPosts, selectedCategory,
-    selectedPost } = this.props
+      selectedPost, selectedComment } = this.props
     return (
       <div>
-        <Route exact path="/" component={Default} />
-        <Route exact path="/create" component={CreateEdit} />
-        {/* { 
-          allPosts.map(p => (
-            <Route
-              exact path={`/${p.category}/${p.id}`}
-              component={PostDetail}
-              key={p.id}
-              post={p}
+        {/* <Route exact path="/" component={Default} /> */}
+        <Switch >
+          <Route exact path="/" component={Default} />
+          <Route
+            path={`/create/post${(selectedPost.length > 0) ? selectedPost : ''}`}
+            render={() => <CreateEdit categories={categories} />}
+            post={selectedPost}
+          />
+          <Route
+            path="/create/comment/new" component={CreateEditComment}
+          />
+          {/* <Route 
+            exact path="/create/comment/new" component={CreateEditComment}
+          /> */}
+          {
+            (Object.keys(selectedComment).length > 0) &&
+            <Route 
+              path={`/create/comment/${selectedComment.id}`} component={CreateEditComment}
+              comment={selectedComment}
             />
-          ))
-        } */}
-        { (selectedPost) &&
-            <Route
-              exact path={`/${selectedPost.category}/${selectedPost.id}`}
-              component={PostDetail}
-              key={selectedPost.id}
-            />
-        }
-        {/* { (categoriesPosts.length > 0) &&
-          categories.map((c, i) => (
-            <Route
-              exact path={`/${c.path}`}
-              component={Categories}
-              key={c.path + 'posts' + i}
-              category={selectedCategory}
-              categoriesPosts={categoriesPosts}
-            />
-          ))
-        } */}
-        <Route
-          exact path={'/' + selectedCategory}
-          component={Categories}
-          category={selectedCategory}
-          categoriesPosts={categoriesPosts}
-        />
+          }
+          { (selectedPost) &&
+              <Route
+                path={`/${selectedPost.category}/${selectedPost.id}`}
+                component={PostDetail}
+                key={selectedPost.id}
+              />
+          }
+          {
+            categories.map(c => (
+              <Route
+                key={c.name}
+                path={'/' + c.name}
+                render={() => (
+                  <Categories selectedCategory={c.name} />
+                )}
+              />
 
+            ))
+          }
+          <Route path='*' component={NotFound} />
+        </Switch>
       </div>
     )
   }
@@ -67,6 +78,7 @@ const mapStateToProps = (state, props) => {
     selectedCategory: readableReducer.selectedCategory,
     categoriesPosts: readableReducer.categoriesPosts,
     selectedPost: readableReducer.selectedPost,
+    selectedComment: readableReducer.selectedComment,
     route: router.location.pathname
   }
 }
