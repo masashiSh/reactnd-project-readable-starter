@@ -55,7 +55,6 @@ export const getCategoriesPosts = (category) => dispatch => (
   ).then(res => res.json()
     .then(json => dispatch({
       type: types.GET_CATEGORIES_POSTS,
-      // selectedCategory: category,
       data: json
     }))
   ).catch(() => console.log('err'))
